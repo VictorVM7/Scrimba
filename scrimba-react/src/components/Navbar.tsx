@@ -8,9 +8,7 @@ export default function Navbar(){
                 <h3>ReactFacts</h3>
             </div>
             <div className="nav-items">
-                <ul className="no-bullets">
-                    <li>React Course - Projet 1</li>
-                </ul>
+                <h4>React Course - Projet 1</h4>
             </div>
         </nav>
     )
