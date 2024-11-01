@@ -1,6 +1,6 @@
-import Navbar from './components/Navbar'
-import Main from './components/Main'
 import './App.css'
+import Hero from './components/Hero'
+import Navbar from './components/Navbar'
 
 function App() {
 
@@ -8,7 +8,7 @@ function App() {
     <>
       <div className='container'>
         <Navbar />
-        <Main />
+        <Hero />
       </div>
     </>
   )
