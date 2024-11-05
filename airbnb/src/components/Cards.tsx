@@ -4,14 +4,21 @@ export default function Cards(){
     return (
         <main>
             <div className="card">
-                <img src="src\images\cards\katie-zaferes.png" />
-                <div className="">
-                    <img src="src\images\cards\star.png" />
+                <img
+                    src="src\images\cards\katie-zaferes.png"
+                    className='card--image'
+                    alt='Image of Katie Zaferes'
+                />
+                <div className="card--stats">
+                    <img
+                        src="src\images\cards\star.png"
+                        alt='Star Icon'
+                    />
                     <span>5.0</span>
-                    <span>(6) •</span>
-                    <span>USA</span>
+                    <span className='gray'>(6) •</span>
+                    <span className='gray'>USA</span>
                 </div>
-                <p>Life Lessons with Katie Zaferes</p>
+                <h2>Life Lessons with Katie Zaferes</h2>
                 <p><span>From $136</span> / person</p>
             </div>
         </main>
