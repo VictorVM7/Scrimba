@@ -1,0 +1,23 @@
+.card{
+    width: 175px;
+    font-size: 0.75rem;
+}
+
+.card--image {
+    width: 100%;
+    border-radius: 9px;
+}
+
+.card--stats{
+    display: flex;
+    align-items: center;
+}
+
+.gray {
+    color: gray;
+}
+
+h2 {
+    font-size: 0.75rem;
+    font-weight: normal;
+}
