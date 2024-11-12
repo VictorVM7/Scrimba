@@ -7,7 +7,7 @@ export default function Cards(){
     return (
         <main>
             <Card 
-                img="src\images\cards\katie-zaferes.png"
+                img="public\images\cards\katie-zaferes.png"
                 title="Life Lessons with Katie Zaferes"
                 rate="5.0"
                 review= {6}

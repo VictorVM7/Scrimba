@@ -14,7 +14,7 @@ export default function Card(props){
                 />
                 <div className="card--stats">
                     <img
-                        src="src\images\cards\star.png"
+                        src="public\images\cards\star.png"
                         alt='Star Icon'
                     />
                     <span>{props.rate}</span>
