@@ -21,3 +21,8 @@ h2 {
     font-size: 0.75rem;
     font-weight: normal;
 }
+
+.cards--list {
+    display: flex;
+    gap: 2rem;
+}

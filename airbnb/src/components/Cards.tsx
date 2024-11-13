@@ -1,19 +1,27 @@
 import React from 'react'
 import '../assets/css/Card.css'
 import Card from './Card'
+import { CardsData } from '../data/CardsData'
 
 export default function Cards(){
 
     return (
         <main>
-            <Card 
-                img="public\images\cards\katie-zaferes.png"
-                title="Life Lessons with Katie Zaferes"
-                rate="5.0"
-                review= {6}
-                country="USA"
-                price={136}
-            />
+            <div className='cards--list'>
+                {
+                    CardsData.map((card, index) => (
+                        <Card 
+                            key={index}
+                            img={card.img}
+                            title={card.title}
+                            rate={card.stats.rating}
+                            review= {card.stats.reviewCount}
+                            country={card.location}
+                            price={card.price}
+                        />
+                    ))
+                }
+            </div>
         </main>
     )
 }
