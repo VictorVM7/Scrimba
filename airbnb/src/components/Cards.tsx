@@ -18,6 +18,7 @@ export default function Cards(){
                             review= {card.stats.reviewCount}
                             country={card.location}
                             price={card.price}
+                            openSpots={card.openSpots}
                         />
                     ))
                 }
