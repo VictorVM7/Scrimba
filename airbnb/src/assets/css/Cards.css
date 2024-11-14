@@ -1,6 +1,7 @@
 .card{
     width: 175px;
     font-size: 0.75rem;
+    position: relative;
 }
 
 .card--image {
@@ -25,4 +26,15 @@ h2 {
 .cards--list {
     display: flex;
     gap: 2rem;
+    padding: 20px;
+}
+
+.card--badge {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background-color: white;
+    padding: 5px 7px;
+    border-radius: 2px;
+    font-weight: bold;
 }
