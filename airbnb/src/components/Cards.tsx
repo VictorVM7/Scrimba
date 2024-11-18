@@ -12,13 +12,7 @@ export default function Cards(){
                     CardsData.map((card, index) => (
                         <Card 
                             key={index}
-                            img={card.img}
-                            title={card.title}
-                            rate={card.stats.rating}
-                            review= {card.stats.reviewCount}
-                            country={card.location}
-                            price={card.price}
-                            openSpots={card.openSpots}
+                            item={card}
                         />
                     ))
                 }

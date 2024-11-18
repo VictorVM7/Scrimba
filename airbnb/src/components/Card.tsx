@@ -6,10 +6,10 @@ import '../assets/css/Cards.css'
 export default function Card(props){
     let badgeText // undefinied when its created without nothind into it
 
-    if(props.openSpots === 0){
+    if(props.item.openSpots === 0){
         badgeText = 'SOLD OUT'
     }
-    else if (props.location === "Online"){
+    else if (props.item.location === "Online"){
         badgeText = 'ONLINE'
     }
 
@@ -18,7 +18,7 @@ export default function Card(props){
             <div className="card">
                 {badgeText && <div className='card--badge'>{badgeText}</div>}
                 <img
-                    src={props.img}
+                    src={props.item.img}
                     className='card--image'
                     alt='Image of Katie Zaferes'
                 />
@@ -27,12 +27,12 @@ export default function Card(props){
                         src="public\images\cards\star.png"
                         alt='Star Icon'
                     />
-                    <span>{props.rate}</span>
-                    <span className='gray'>{props.review} •</span>
-                    <span className='gray'>{props.country}</span>
+                    <span>{props.item.rate}</span>
+                    <span className='gray'>{props.item.review} •</span>
+                    <span className='gray'>{props.item.country}</span>
                 </div>
-                <h2>{props.title}</h2>
-                <p><span><b>From ${props.price}</b></span> / person</p>
+                <h2>{props.item.title}</h2>
+                <p><span><b>From ${props.item.price}</b></span> / person</p>
             </div>
         </main>
     )
