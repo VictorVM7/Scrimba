@@ -4,7 +4,7 @@ import '../assets/css/Cards.css'
 
 // Destructuring Props is declare any parameter that has been passed in props object as it follows
 export default function Card(props){
-    let badgeText // undefinied when its created without nothind into it
+    let badgeText
 
     if(props.item.openSpots === 0){
         badgeText = 'SOLD OUT'
@@ -27,9 +27,9 @@ export default function Card(props){
                         src="public\images\cards\star.png"
                         alt='Star Icon'
                     />
-                    <span>{props.item.rate}</span>
-                    <span className='gray'>{props.item.review} •</span>
-                    <span className='gray'>{props.item.country}</span>
+                    <span>{props.item.stats.rating}</span>
+                    <span className='gray'>{props.item.stats.reviewCount} •</span>
+                    <span className='gray'>{props.item.location}</span>
                 </div>
                 <h2>{props.item.title}</h2>
                 <p><span><b>From ${props.item.price}</b></span> / person</p>
