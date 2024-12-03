@@ -5,7 +5,7 @@ export default function Header() {
         <>
             <header>
                 <div className='justify-items-center'>
-                    <img src={ChefClaudeLogo}/>
+                    <img src={ChefClaudeLogo} alt={ChefClaudeLogo} />
                 </div>
             </header>
         </>
