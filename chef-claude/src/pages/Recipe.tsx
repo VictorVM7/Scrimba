@@ -13,6 +13,8 @@ export default function Recipe(){
         setInputValue("");
     }
 
+
+
     // Wrapper - Transforms the event into the string.
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
@@ -21,11 +23,14 @@ export default function Recipe(){
     return (
         <Main>
             <InputIngredients handleClick={addIngredient} inputValue={inputValue} onChangeInput={handleInputChange}/>
-            <ul>
-                {ingredients.map((ingredient, index) =>
-                    <li key={index}>{ingredient}</li>
-                )}
-            </ul>
+            <div className={'w-screen bg-gray-100'}>
+                <h3 className={'text-2xl font-bold'}>Ingredients</h3>
+                <ul>
+                    {ingredients.map((ingredient, index) =>
+                        <li key={index}>{ingredient}</li>
+                    )}
+                </ul>
+            </div>
         </Main>
     )
 }
