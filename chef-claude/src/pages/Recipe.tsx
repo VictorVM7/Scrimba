@@ -3,6 +3,10 @@ import InputIngredients from "../components/Input.tsx";
 import {useState} from "react";
 import {toast} from "react-toastify";
 
+// Icons
+import { MdOutlineEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+
 export default function Recipe(){
     // State - Control state of variables
     const [ingredients, setIngredients] = useState<string[]>([]);
@@ -32,7 +36,21 @@ export default function Recipe(){
                 <div>
                     <ul className={'text-gray-500 list-disc'}>
                         {ingredients.map((ingredient, index) =>
-                            <li key={index}>{ingredient}</li>
+                            <li key={index} className={'p-2 hover:bg-gray-50'}>
+                                <div className={'flex justify-between align-items-center'}>
+                                    <text className={'font-medium'}>
+                                        {ingredient.toUpperCase()}
+                                    </text>
+                                    <div className={'flex gap-2'}>
+                                        <button className={'p-2 bg-gray-100 rounded-lg hover:bg-gray-200'}>
+                                            <MdOutlineEdit size={20}/>
+                                        </button>
+                                        <button className={'p-2 bg-red-100 rounded-lg hover:bg-red-200'}>
+                                            <MdDelete size={20} className={'text-red-500'}/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
                         )}
                     </ul>
                 </div>
