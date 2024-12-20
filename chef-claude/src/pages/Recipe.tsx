@@ -28,6 +28,14 @@ export default function Recipe(){
         setInputValue(e.target.value);
     }
 
+    const handleDeleteItem = (index, ingredient) => {
+        setIngredients(values => {
+            return values.filter((_, i) => i !== index);
+        })
+
+        toast(ingredient + ' Deleted');
+    }
+
     return (
         <Main>
             <InputIngredients handleClick={addIngredient} inputValue={inputValue} onChangeInput={handleInputChange}/>
@@ -45,7 +53,7 @@ export default function Recipe(){
                                         <button className={'p-2 bg-gray-100 rounded-lg hover:bg-gray-200'}>
                                             <MdOutlineEdit size={20}/>
                                         </button>
-                                        <button className={'p-2 bg-red-100 rounded-lg hover:bg-red-200'}>
+                                        <button className={'p-2 bg-red-100 rounded-lg hover:bg-red-200'} onClick={() => handleDeleteItem(index, ingredient)}>
                                             <MdDelete size={20} className={'text-red-500'}/>
                                         </button>
                                     </div>
