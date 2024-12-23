@@ -36,13 +36,23 @@ export default function Recipe(){
         toast(ingredient + ' Deleted');
     }
 
+    const handleEditItem = (ingredient) => {
+        return (
+            <>
+                <div className={'w-screen h-screen bg-gray-50'}>
+                    <input className={'w-96'} value={ingredient} />
+                </div>
+            </>
+        )
+    }
+
     return (
         <Main>
             <InputIngredients handleClick={addIngredient} inputValue={inputValue} onChangeInput={handleInputChange}/>
             <div className={'w-3/6'}>
                 <h3 className={'text-4xl font-medium pb-10'}>Ingredients</h3>
                 <div>
-                    <ul className={'text-gray-500 list-disc'}>
+                    <ul className={'text-gray-500'}>
                         {ingredients.map((ingredient, index) =>
                             <li key={index} className={'p-2 hover:bg-gray-50'}>
                                 <div className={'flex justify-between align-items-center'}>
@@ -50,7 +60,7 @@ export default function Recipe(){
                                         {ingredient.toUpperCase()}
                                     </text>
                                     <div className={'flex gap-2'}>
-                                        <button className={'p-2 bg-gray-100 rounded-lg hover:bg-gray-200'}>
+                                        <button className={'p-2 bg-gray-100 rounded-lg hover:bg-gray-200'} onClick={() => handleEditItem(ingredient)}>
                                             <MdOutlineEdit size={20}/>
                                         </button>
                                         <button className={'p-2 bg-red-100 rounded-lg hover:bg-red-200'} onClick={() => handleDeleteItem(index, ingredient)}>
