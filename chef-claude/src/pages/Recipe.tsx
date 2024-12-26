@@ -11,6 +11,7 @@ export default function Recipe(){
     // State - Control state of variables
     const [ingredients, setIngredients] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
+    const [IsIngredientListInserted, setIsIngredientListInserted] = useState(false);
 
     // Event - OnClick add items
     const addIngredient = () => {
@@ -19,6 +20,7 @@ export default function Recipe(){
         }
         setIngredients([...ingredients, inputValue]);
         setInputValue("");
+        setIsIngredientListInserted(true);
 
         toast('Ingredient Added');
     }
@@ -32,6 +34,11 @@ export default function Recipe(){
         setIngredients(values => {
             return values.filter((_, i) => i !== index);
         })
+
+        // Verify if there are any items in the list
+        if (!ingredients.values()) {
+            setIsIngredientListInserted(false);
+        }
 
         toast(ingredient + ' Deleted');
     }
@@ -50,7 +57,7 @@ export default function Recipe(){
         <Main>
             <InputIngredients handleClick={addIngredient} inputValue={inputValue} onChangeInput={handleInputChange}/>
             <div className={'w-3/6'}>
-                <h3 className={'text-4xl font-medium pb-10'}>Ingredients</h3>
+                <h3 className={'text-4xl font-medium pb-10'}>Ingredients on hand:</h3>
                 <div>
                     <ul className={'text-gray-500'}>
                         {ingredients.map((ingredient, index) =>
@@ -72,6 +79,26 @@ export default function Recipe(){
                         )}
                     </ul>
                 </div>
+            </div>
+            <div className={'w-3/6 my-5'}>
+                {
+                    IsIngredientListInserted &&
+                    <div className={'flex justify-between align-middle p-5 bg-orange-50'}>
+                        <div>
+                            <div>
+                                <text className={'font-bold text-amber-600 text-xl'}>Ready for the recipe?</text>
+                            </div>
+                            <div>
+                                <text className={'text-gray-500'}>Generate a recipe from your list of ingredients.</text>
+                            </div>
+                        </div>
+                        <div className={'flex align-middle'}>
+                            <button className={'py-2 px-4 bg-amber-600 text-white rounded-md'}>
+                                <text className={'font-medium'}>Get A Recipe</text>
+                            </button>
+                        </div>
+                    </div>
+                }
             </div>
         </Main>
     )
