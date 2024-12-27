@@ -30,34 +30,36 @@ export default function Recipe(){
         setInputValue(e.target.value);
     }
 
+    // Delete items
     const handleDeleteItem = (index, ingredient) => {
         setIngredients(values => {
-            return values.filter((_, i) => i !== index);
+            const updatedIngredients = values.filter((_, i) => i !== index);
+
+            // Verify if there are any items in the list
+            if (updatedIngredients.length === 0) {
+                setIsIngredientListInserted(false);
+            }
+
+            return updatedIngredients;
         })
 
-        // Verify if there are any items in the list
-        if (!ingredients.values()) {
-            setIsIngredientListInserted(false);
-        }
-
         toast(ingredient + ' Deleted');
-    }
-
-    const handleEditItem = (ingredient) => {
-        return (
-            <>
-                <div className={'w-screen h-screen bg-gray-50'}>
-                    <input className={'w-96'} value={ingredient} />
-                </div>
-            </>
-        )
     }
 
     return (
         <Main>
             <InputIngredients handleClick={addIngredient} inputValue={inputValue} onChangeInput={handleInputChange}/>
             <div className={'w-3/6'}>
-                <h3 className={'text-4xl font-medium pb-10'}>Ingredients on hand:</h3>
+                <div>
+                    <h3 className={'text-4xl font-medium pb-10'}>Ingredients on hand:</h3>
+                </div>
+                <div className={'my-5 flex align-middle justify-end'}>
+                    <button className={'px-4 py-2 rounded-lg bg-red-100 hover:bg-red-200'}>
+                        <text className={'text-red-700'}>
+                            Delete All
+                        </text>
+                    </button>
+                </div>
                 <div>
                     <ul className={'text-gray-500'}>
                         {ingredients.map((ingredient, index) =>
@@ -67,10 +69,11 @@ export default function Recipe(){
                                         {ingredient.toUpperCase()}
                                     </text>
                                     <div className={'flex gap-2'}>
-                                        <button className={'p-2 bg-gray-100 rounded-lg hover:bg-gray-200'} onClick={() => handleEditItem(ingredient)}>
+                                        <button className={'p-2 bg-gray-100 rounded-lg hover:bg-gray-200'}>
                                             <MdOutlineEdit size={20}/>
                                         </button>
-                                        <button className={'p-2 bg-red-100 rounded-lg hover:bg-red-200'} onClick={() => handleDeleteItem(index, ingredient)}>
+                                        <button className={'p-2 bg-red-100 rounded-lg hover:bg-red-200'}
+                                                onClick={() => handleDeleteItem(index, ingredient)}>
                                             <MdDelete size={20} className={'text-red-500'}/>
                                         </button>
                                     </div>
