@@ -12,16 +12,14 @@ export default function Recipe(){
     const [ingredients, setIngredients] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
     const [IsIngredientListInserted, setIsIngredientListInserted] = useState(false);
+    const [editingIngredientIndex, setEditingIngredientIndex] = useState<number | null>(null);
 
     // Event - OnClick add items
-    const addIngredient = () => {
-        if (inputValue === ""){
-            return
-        }
-        setIngredients([...ingredients, inputValue]);
+    function addIngredient() {
+        if (inputValue === "") return
+        setIngredients(inputValue)
         setInputValue("");
         setIsIngredientListInserted(true);
-
         toast('Ingredient Added');
     }
 
@@ -43,8 +41,17 @@ export default function Recipe(){
             return updatedIngredients;
         })
 
-        toast(ingredient + ' Deleted');
+        toast(`${ingredient} deleted.`);
     }
+
+    const deleteAllIngredients = () => {
+        setIngredients([]);
+    }
+
+    // Edit item
+    const editIngredient = (index: number) => {
+        setEditingIngredientIndex(index);
+    };
 
     return (
         <Main>
@@ -54,7 +61,7 @@ export default function Recipe(){
                     <h3 className={'text-4xl font-medium pb-10'}>Ingredients on hand:</h3>
                 </div>
                 <div className={'my-5 flex align-middle justify-end'}>
-                    <button className={'px-4 py-2 rounded-lg bg-red-100 hover:bg-red-200'}>
+                    <button className={'px-4 py-2 rounded-lg bg-red-100 hover:bg-red-200'} onClick={deleteAllIngredients}>
                         <text className={'text-red-700'}>
                             Delete All
                         </text>
