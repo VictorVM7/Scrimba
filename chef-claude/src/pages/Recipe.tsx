@@ -6,24 +6,25 @@ import {toast} from "react-toastify";
 // Icons
 import { MdOutlineEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import {Modal} from "../components/Dialog/Modal.tsx";
 
 export default function Recipe(){
     // State - Control state of variables
     const [ingredients, setIngredients] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
     const [IsIngredientListInserted, setIsIngredientListInserted] = useState(false);
-    const [editingIngredientIndex, setEditingIngredientIndex] = useState<number | null>(null);
+    const [openModal, setOpenModal] = useState<boolean>(false);
 
     // Event - OnClick add items
-    function addIngredient() {
+    const addIngredient = () => {
         if (inputValue === "") return
-        setIngredients(inputValue)
+        setIngredients((prev) => [...prev, inputValue]);
         setInputValue("");
         setIsIngredientListInserted(true);
         toast('Ingredient Added');
     }
 
-    // Wrapper - Transforms the event into the string.
+    // Get text in input
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
     }
@@ -44,14 +45,10 @@ export default function Recipe(){
         toast(`${ingredient} deleted.`);
     }
 
+    // Delete all items
     const deleteAllIngredients = () => {
         setIngredients([]);
     }
-
-    // Edit item
-    const editIngredient = (index: number) => {
-        setEditingIngredientIndex(index);
-    };
 
     return (
         <Main>
@@ -76,7 +73,8 @@ export default function Recipe(){
                                         {ingredient.toUpperCase()}
                                     </text>
                                     <div className={'flex gap-2'}>
-                                        <button className={'p-2 bg-gray-100 rounded-lg hover:bg-gray-200'}>
+                                        <button className={'p-2 bg-gray-100 rounded-lg hover:bg-gray-200'}
+                                                onClick={() => setOpenModal(!openModal)}>
                                             <MdOutlineEdit size={20}/>
                                         </button>
                                         <button className={'p-2 bg-red-100 rounded-lg hover:bg-red-200'}
@@ -110,6 +108,7 @@ export default function Recipe(){
                     </div>
                 }
             </div>
+            <Modal isOpen={openModal}/>
         </Main>
     )
 }

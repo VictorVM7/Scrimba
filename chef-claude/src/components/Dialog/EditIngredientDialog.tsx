@@ -6,7 +6,7 @@ interface EditIngredientDialogProps {
     onClose: () => void;
 }
 
-const EditIngredientDialog = ({
+const EditIngredientDialog : React.FC<EditIngredientDialogProps> = ({
     ingredient,
     onSave,
     onClose,
