@@ -4,16 +4,14 @@ import {useState} from "react";
 import {toast} from "react-toastify";
 
 // Icons
-import { MdOutlineEdit } from "react-icons/md";
-import { MdDelete } from "react-icons/md";
-import {Modal} from "../components/Dialog/Modal.tsx";
+import {MdDelete, MdOutlineEdit} from "react-icons/md";
+import Modal from "../components/Dialog/Modal.tsx";
 
 export default function Recipe(){
     // State - Control state of variables
     const [ingredients, setIngredients] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
     const [IsIngredientListInserted, setIsIngredientListInserted] = useState(false);
-    const [openModal, setOpenModal] = useState<boolean>(false);
 
     // Event - OnClick add items
     const addIngredient = () => {
@@ -50,6 +48,7 @@ export default function Recipe(){
         setIngredients([]);
     }
 
+
     return (
         <Main>
             <InputIngredients handleClick={addIngredient} inputValue={inputValue} onChangeInput={handleInputChange}/>
@@ -73,10 +72,11 @@ export default function Recipe(){
                                         {ingredient.toUpperCase()}
                                     </text>
                                     <div className={'flex gap-2'}>
-                                        <button className={'p-2 bg-gray-100 rounded-lg hover:bg-gray-200'}
-                                                onClick={() => setOpenModal(!openModal)}>
-                                            <MdOutlineEdit size={20}/>
-                                        </button>
+                                        <Modal
+                                            title={`Edit ingredient`}
+                                            icon={<MdOutlineEdit />}
+                                            text={`Change the ingredient name to ${ingredient.toUpperCase()}`}
+                                        />
                                         <button className={'p-2 bg-red-100 rounded-lg hover:bg-red-200'}
                                                 onClick={() => handleDeleteItem(index, ingredient)}>
                                             <MdDelete size={20} className={'text-red-500'}/>
@@ -108,7 +108,6 @@ export default function Recipe(){
                     </div>
                 }
             </div>
-            <Modal isOpen={openModal}/>
         </Main>
     )
 }
