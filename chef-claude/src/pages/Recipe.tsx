@@ -1,13 +1,14 @@
 import Main from "../layout/Main.tsx";
 import InputIngredients from "../components/Input.tsx";
-import {useState} from "react";
-import {toast} from "react-toastify";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 // Icons
 import {MdDelete, MdOutlineEdit, MdNoFood} from "react-icons/md";
 import Modal from "../components/Dialog/Modal.tsx";
 
-export default function Recipe(){
+
+export default function Recipe() {
     // State - Control state of variables
     const [ingredients, setIngredients] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState<string>("");
@@ -18,18 +19,26 @@ export default function Recipe(){
         if (inputValue === "") return
         setIngredients((prev) => [...prev, inputValue]);
         setInputValue("");
+      
+    const [editingIngredient, setEditingIngredient] = useState<string | null>(null);
+
+    // Event - OnClick add items
+    function addIngredient() {
+        if (inputValue.trim() === "") return; // Avoid adding empty values
+        setIngredients((prevIngredients) => [...prevIngredients, inputValue.trim()]);
+        setInputValue(""); // Clear the input field
         setIsIngredientListInserted(true);
-        toast('Ingredient Added');
+        toast("Ingredient added!");
     }
 
     // Get text in input
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
-    }
+    };
 
     // Delete items
-    const handleDeleteItem = (index, ingredient) => {
-        setIngredients(values => {
+    const handleDeleteItem = (index: number, ingredient: string) => {
+        setIngredients((values) => {
             const updatedIngredients = values.filter((_, i) => i !== index);
 
             // Verify if there are any items in the list
@@ -38,10 +47,10 @@ export default function Recipe(){
             }
 
             return updatedIngredients;
-        })
+        });
 
         toast(`${ingredient} deleted.`);
-    }
+    };
 
     // Delete all items
     const deleteAllIngredients = () => {
@@ -129,5 +138,5 @@ export default function Recipe(){
                 </>
             }
         </Main>
-    )
+    );
 }
