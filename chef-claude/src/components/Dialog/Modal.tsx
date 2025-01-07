@@ -27,7 +27,7 @@ export default function Modal(props: IModal) {
 
     return (
         <React.Fragment>
-            <button onClick={handleClickOpen} className={'p-2 bg-gray-50 rounded-md'}>
+            <button onClick={handleClickOpen} className={'p-2 bg-gray-50 rounded-md hover:bg-gray-200'}>
                 {props.icon}
             </button>
             <Dialog
